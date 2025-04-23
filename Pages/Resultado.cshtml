@@ -1,0 +1,83 @@
+@page
+@model EdadBiologicaCalculadora.Pages.ResultadoModel
+@{
+    ViewData["Title"] = "Resultado de Edad Biológica";
+}
+
+<div class="container">
+    <h1 class="my-4">Resultado de tu Edad Biológica</h1>
+
+    @if (Model.Calculadora != null)
+    {
+        <div class="card shadow mb-4">
+            <div class="card-header bg-primary text-white">
+                <h3>Hola, @Model.Calculadora.Nombre</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Tu edad cronológica: <span class="badge bg-secondary">@Model.Calculadora.EdadCronologica años</span></h4>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Tu edad biológica: 
+                            <span class="badge @(Model.Calculadora.DiferenciaEdad < 0 ? "bg-success" : 
+                                               Model.Calculadora.DiferenciaEdad == 0 ? "bg-info" : "bg-danger")">
+                                @Model.Calculadora.EdadBiologica años
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="alert @(Model.Calculadora.DiferenciaEdad < 0 ? "alert-success" : 
+                                   Model.Calculadora.DiferenciaEdad == 0 ? "alert-info" : "alert-danger") mt-4">
+                    <h5>@Model.Calculadora.Retroalimentacion</h5>
+                    <p>
+                        @if (Model.Calculadora.DiferenciaEdad < 0)
+                        {
+                            <span>Tu cuerpo está @Math.Abs(Model.Calculadora.DiferenciaEdad) años más joven que tu edad cronológica. ¡Sigue así!</span>
+                        }
+                        else if (Model.Calculadora.DiferenciaEdad > 0)
+                        {
+                            <span>Tu cuerpo está @Model.Calculadora.DiferenciaEdad años más viejo que tu edad cronológica. Considera mejorar tus hábitos.</span>
+                        }
+                        else
+                        {
+                            <span>Tu cuerpo está en perfecta sintonía con tu edad cronológica.</span>
+                        }
+                    </p>
+                </div>
+
+                <div class="mt-4">
+                    <h5>Factores analizados:</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item @(!Model.Calculadora.DuermeSieteHoras ? "list-group-item-danger" : "list-group-item-success")">
+                            Sueño: @(Model.Calculadora.DuermeSieteHoras ? "Adecuado" : "Insuficiente")
+                        </li>
+                        <li class="list-group-item @(!Model.Calculadora.HaceEjercicio ? "list-group-item-danger" : "list-group-item-success")">
+                            Ejercicio: @(Model.Calculadora.HaceEjercicio ? "Regular" : "Insuficiente")
+                        </li>
+                        <li class="list-group-item @(Model.Calculadora.Fuma ? "list-group-item-danger" : "list-group-item-success")">
+                            Tabaquismo: @(Model.Calculadora.Fuma ? "Sí" : "No")
+                        </li>
+                        <li class="list-group-item @(!Model.Calculadora.ConsumeFrutasVerduras ? "list-group-item-danger" : "list-group-item-success")">
+                            Alimentación: @(Model.Calculadora.ConsumeFrutasVerduras ? "Saludable" : "Mejorable")
+                        </li>
+                        <li class="list-group-item @(Model.Calculadora.TieneEstres ? "list-group-item-danger" : "list-group-item-success")">
+                            Estrés: @(Model.Calculadora.TieneEstres ? "Alto" : "Bajo")
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a asp-page="EdadBiologica" class="btn btn-primary">Calcular de nuevo</a>
+                <a asp-page="Historial" class="btn btn-secondary">Ver historial</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            No se encontró el resultado solicitado. <a asp-page="EdadBiologica">Volver a la calculadora</a>
+        </div>
+    }
+</div>

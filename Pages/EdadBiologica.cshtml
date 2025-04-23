@@ -1,0 +1,55 @@
+@page
+@model EdadBiologicaCalculadora.Pages.EdadBiologicaModel
+@{
+    ViewData["Title"] = "Calculadora de Edad Biológica";
+}
+
+<h2>Calculadora de Edad Biológica</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Calculadora.Nombre" class="form-label">Nombre</label>
+        <input asp-for="Calculadora.Nombre" class="form-control" />
+        <span asp-validation-for="Calculadora.Nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Calculadora.EdadCronologica" class="form-label">Edad</label>
+        <input asp-for="Calculadora.EdadCronologica" class="form-control" type="number" />
+        <span asp-validation-for="Calculadora.EdadCronologica" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input asp-for="Calculadora.DuermeSieteHoras" class="form-check-input" type="checkbox" />
+        <label asp-for="Calculadora.DuermeSieteHoras" class="form-check-label">¿Duermes al menos 7 horas al día?</label>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input asp-for="Calculadora.HaceEjercicio" class="form-check-input" type="checkbox" />
+        <label asp-for="Calculadora.HaceEjercicio" class="form-check-label">¿Haces ejercicio regularmente?</label>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input asp-for="Calculadora.Fuma" class="form-check-input" type="checkbox" />
+        <label asp-for="Calculadora.Fuma" class="form-check-label">¿Fumas?</label>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input asp-for="Calculadora.ConsumeFrutasVerduras" class="form-check-input" type="checkbox" />
+        <label asp-for="Calculadora.ConsumeFrutasVerduras" class="form-check-label">¿Consumes frutas y verduras a diario?</label>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input asp-for="Calculadora.TieneEstres" class="form-check-input" type="checkbox" />
+        <label asp-for="Calculadora.TieneEstres" class="form-check-label">¿Sufres de estrés frecuentemente?</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Calcular Edad Biológica</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

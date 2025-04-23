@@ -1,0 +1,61 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Calculadora de Edad Biológica</h1>
+    <p class="lead">Descubre si tu estilo de vida está afectando tu salud</p>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-body">
+                <h5 class="card-title">¿Qué es la edad biológica?</h5>
+                <p class="card-text">
+                    La edad biológica es una medida estimada del estado de salud general de una persona, 
+                    basada en sus hábitos de vida, y puede diferir de su edad cronológica.
+                </p>
+                <p class="card-text">
+                    Factores como el sueño, ejercicio, alimentación, estrés y hábitos como fumar 
+                    pueden hacer que tu cuerpo envejezca más rápido o más lento que tu edad real.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-body">
+                <h5 class="card-title">¿Cómo funciona nuestra calculadora?</h5>
+                <p class="card-text">
+                    Nuestra calculadora te hará preguntas sencillas sobre tus hábitos diarios
+                    y estimará tu edad biológica basada en tus respuestas.
+                </p>
+                <p class="card-text">
+                    Al final, recibirás una retroalimentación personalizada y consejos para mejorar tu salud.
+                </p>
+                <a asp-page="/EdadBiologica" class="btn btn-primary">Calcular mi edad biológica</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Beneficios de conocer tu edad biológica</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Identificar hábitos que están afectando tu salud</li>
+                    <li class="list-group-item">Motivarte a realizar cambios positivos en tu estilo de vida</li>
+                    <li class="list-group-item">Monitorear tu progreso a lo largo del tiempo</li>
+                    <li class="list-group-item">Tomar decisiones informadas sobre tu bienestar</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

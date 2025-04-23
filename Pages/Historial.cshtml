@@ -1,0 +1,71 @@
+@page
+@model EdadBiologicaCalculadora.Pages.HistorialModel
+@{
+    ViewData["Title"] = "Historial de Cálculos";
+}
+
+<div class="container">
+    <h1 class="my-4">Historial de Cálculos</h1>
+
+    @if (Model.Historial.Any())
+    {
+        <div class="mb-3">
+            <a asp-page="EdadBiologica" class="btn btn-primary">Nueva Calculadora</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>Edad Cronológica</th>
+                        <th>Edad Biológica</th>
+                        <th>Diferencia</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var calculo in Model.Historial)
+                    {
+                        <tr>
+                            <td>@calculo.FechaCalculo.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@calculo.Nombre</td>
+                            <td>@calculo.EdadCronologica</td>
+                            <td>
+                                <span class="badge @(calculo.DiferenciaEdad < 0 ? "bg-success" : 
+                                                   calculo.DiferenciaEdad == 0 ? "bg-info" : "bg-danger")">
+                                    @calculo.EdadBiologica
+                                </span>
+                            </td>
+                            <td>
+                                @if (calculo.DiferenciaEdad < 0)
+                                {
+                                    <span class="text-success">@calculo.DiferenciaEdad</span>
+                                }
+                                else if (calculo.DiferenciaEdad > 0)
+                                {
+                                    <span class="text-danger">+@calculo.DiferenciaEdad</span>
+                                }
+                                else
+                                {
+                                    <span class="text-info">0</span>
+                                }
+                            </td>
+                            <td>
+                                <a asp-page="Resultado" class="btn btn-sm btn-info">Ver Detalles</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <p>No hay cálculos en el historial.</p>
+            <a asp-page="EdadBiologica" class="btn btn-primary">Realizar un cálculo</a>
+        </div>
+    }
+</div>
